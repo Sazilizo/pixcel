@@ -12,9 +12,9 @@ const Logo = ({ color = '#4A90E2', textColor = '#333' }) => {
         y="55"
         fontFamily="Arial, sans-serif"
         fontSize="35"
-        fill={textColor}
+        fill={color}
         fontWeight="bold"
-        style={{ textAnchor: 'center', dominantBaseline: 'middle' }}
+        style={{ textAnchor: 'center', dominantBaseline: 'middle',color:color }}
       >
         Picxel Academy
       </text>

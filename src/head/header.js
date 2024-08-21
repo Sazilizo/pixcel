@@ -6,6 +6,7 @@ import { IoSearch } from "react-icons/io5";
 
 const Header=()=>{
     const [search, setSearch] = useState();
+    const [models, setModels] = useState("men");
 
     const handleSearch =(e)=>{
         setSearch(e.target.value)
@@ -17,7 +18,7 @@ const Header=()=>{
             <div className="navigation">
                 <div className="logo-search-user">
                     <div className="logo">
-                        <Logo/>
+                        <Logo color="white"/>
                     </div>
                     <div className="search-bar">
                         <input onChange={(e)=>handleSearch(e)} type="search"></input>
@@ -52,12 +53,6 @@ const Header=()=>{
                         <li>Contact us</li>
                     </ul>
                 </div>
-            </div>
-            <div className="banner-text">
-                <p>
-                    gather the best and upcoming models and photographers
-                    for your portfolio, making life easier for you.
-                </p>
             </div>
             <h1>Searched:{search}</h1>
         </div>
