@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaRegEye } from "react-icons/fa";
 
 const Watchlist=()=>{
+    const [watchlist, setWatchList] = useState(0);
     return (
         <div className="watchlist">
-            <span>1</span>
+            <FaRegEye />
+            <span>{watchlist}</span>
         </div>
     );
 };

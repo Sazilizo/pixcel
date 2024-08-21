@@ -8,24 +8,54 @@
     width:100%;
     color:black;
     flex-direction: column;
-    background-image: url("../pexels-alex-andrews-271121-1983037.jpg");
-    height:100vh;
-    background-position:right;
-    background-repeat: no-repeat;
-    background-size: cover;
     color:white;
 }
-.logo-history-container{
+.navigation{
     display: flex;
-    justify-content: space-around;
+    width:100%;
+    flex-direction: column;
+    background-color:black;
+    height:12rem;
+    padding:1rem;
     align-items: center;
 }
+.user-history{
+    display: flex;
+    justify-content: space-between;
+    width:10%;
+}
 .logo{
-    width: 50%;
+    width:20%
+}
+.search-bar{
+    width:60%;
+    position: relative;
+}
+.search-bar input{
+    width:100%;
+    padding:.6rem;
+    border-radius: 10px;
+    outline:none;
+}
+.search-icon{
+    color:white;
+    position:absolute;
+    font-size: 2rem;
+    right:0;
+    transform: translate(-10%,10%);
+    background-color: black;
+    border:2px solid red;
+    border-radius: 50%;
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.5);
+}
+.logo-search-user{
+    display: flex;
+    width:90%;
+    flex-direction: row;
+    justify-content: space-around;
 }
 .navigation-menu{
-    width:60%;
-    align-self: last baseline;
+    width:70%;
 }
 .navigation-menu ul{
     display: flex;
@@ -48,12 +78,44 @@
 .navigation-menu ul li ul li{
     padding:5px 0;
 }
+.navigation-menu ul li ul li ul{
+    display:flex;
+    flex-direction: column;
+}
 .navigation-menu ul li ul li:hover{
+    color:wheat;
+}
+.navigation-menu ul li:active{
+    color:teal;
 }
 .navigation-menu ul li:hover ul{
-    display: block;
+    display:flex;
 }
 .history-watchlist{
     display: flex;
     gap:2.5rem;
 }
+.banner-text{
+    background-color: rgba(0,0,0,0.6);
+    width: min(400px, 50vw);
+    height: min(400px, 40vh);
+    position: absolute;
+    top:50%;
+    transform: translate(10%, 0%);
+}
+.banner-text p{
+    font-size:clamp(1px, 10px, 4rem);
+    color:grey;
+}
+.Footer{
+    width:100%;
+    height:60vh;
+    background-image: url("../pexels-hikaique-598917.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    place-content: center;
+};
+
+
