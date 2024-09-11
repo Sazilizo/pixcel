@@ -1,56 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+import {Link, Navigate} from "react-router-dom";
+import { formContext } from '../context/UserContext';
 
 const Apply = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        lastName:'',
-        age: '',
-        email: '',
-        street:'',
-        postalCode:'',
-        state: '',
-        city: '',
-        country: '',
-        portfolio: '',
-        experience:'',
-    });
-    
-      // Initialize state for form submission
-    const [submitted, setSubmitted] = useState(false);
-    
-      // Handle form input changes
-    const handleChange = (e) => {
-        setFormData({
-          ...formData,
-          [e.target.name]: e.target.value,
-        });
-    };
-    
-      // Handle form submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Form Data:', formData);
-        setSubmitted(true);
-    };
-    console.log(formData.experience);
-    useEffect(()=>{
-      console.log(formData)
-    },[formData])
+    const {handleApplyFormChange,handleSubmit, models,submitted} = useContext(formContext);
+
     return (
         <div className="form-container">
           <h2>Register as a Modeller</h2>
           {submitted ? (
             <p>Thank you for registering!</p>
           ) : (
-            <form className="form-details" onSubmit={handleSubmit}>
+            <form className="form-details" onSubmit={(e)=>handleSubmit(e)}>
               <div className="form-elements">
                 <label htmlFor="name">Name:</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
+                  value={models.name}
+                  onChange={(e)=>handleApplyFormChange(e)}
                   required
                 />
               </div>
@@ -61,8 +30,8 @@ const Apply = () => {
                   type="text"
                   id="lastName"
                   name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
+                  value={models.lastName}
+                  onChange={(e)=>handleApplyFormChange(e)}
                   required
                 />
               </div>
@@ -73,21 +42,55 @@ const Apply = () => {
                   type="number"
                   id="age"
                   name="age"
-                  value={formData.age}
-                  onChange={handleChange}
+                  value={models.age}
+                  onChange={(e)=>handleApplyFormChange(e)}
                   required
                   min="18"
                 />
               </div>
-    
+
+              <div className="form-elements">
+                    <label htmlFor="ethnicty">Select your gender</label>
+                    <select id="ethnicity" name="ethnicity" value={models.ethnicity} onChange={(e)=>handleApplyFormChange(e)} required>
+                        <option value="" disabled>Select yor ethnicity</option>
+                        <option value="African">African</option>
+                        <option value="Asian">Asian</option>
+                        <option value="Native American">American(Americas)</option>
+                        <option value="European">European</option>
+                        <option value="Aborigene">Aborigene</option>
+                        <option value="Maori">Maori</option>
+                    </select>
+              </div>
+            
+              <div className="form-elements">
+                    <label htmlFor="gender">Select your gender</label>
+                    <select id="gender" name="gender" value={models.gender} onChange={(e)=>handleApplyFormChange(e)} required>
+                        <option value="" disabled>Select yor gender</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                </div>
+
               <div className="form-elements">
                 <label htmlFor="email">Email:</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
+                  value={models.email}
+                  onChange={(e)=>handleApplyFormChange(e)}
+                  required
+                />
+              </div>
+
+              <div className="form-elements">
+                <label htmlFor="password">password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={models.password}
+                  onChange={(e)=>handleApplyFormChange(e)}
                   required
                 />
               </div>
@@ -98,8 +101,8 @@ const Apply = () => {
                     type="text"
                     id="street"
                     name="street"
-                    value={formData.street}
-                    onChange={handleChange}
+                    value={models.street}
+                    onChange={(e)=>handleApplyFormChange(e)}
                     required
                     />
                 </div>
@@ -110,8 +113,8 @@ const Apply = () => {
                     type="text"
                     id="city"
                     name="city"
-                    value={formData.city}
-                    onChange={handleChange}
+                    value={models.city}
+                    onChange={(e)=>handleApplyFormChange(e)}
                     required
                     />
                 </div>
@@ -122,8 +125,8 @@ const Apply = () => {
                     type="text"
                     id="state"
                     name="state"
-                    value={formData.state}
-                    onChange={handleChange}
+                    value={models.province}
+                    onChange={(e)=>handleApplyFormChange(e)}
                     required
                     />
                 </div>
@@ -134,8 +137,8 @@ const Apply = () => {
                     type="text"
                     id="postalCode"
                     name="postalCode"
-                    value={formData.postalCode}
-                    onChange={handleChange}
+                    value={models.postalCode}
+                    onChange={(e)=>handleApplyFormChange(e)}
                     required
                     />
                 </div>
@@ -146,8 +149,8 @@ const Apply = () => {
                     type="text"
                     id="country"
                     name="country"
-                    value={formData.country}
-                    onChange={handleChange}
+                    value={models.country}
+                    onChange={(e)=>handleApplyFormChange(e)}
                     required
                     />
                 </div>
@@ -158,15 +161,15 @@ const Apply = () => {
                   type="url"
                   id="portfolio"
                   name="portfolio"
-                  value={formData.portfolio}
-                  onChange={handleChange}
+                  value={models.portfolio}
+                  onChange={(e)=>handleApplyFormChange(e)}
                   required
                 />
               </div>
 
                 <div className="form-elements">
                     <label htmlFor="experience"></label>
-                    <select id="experience" name="experience" value={formData.experience} onChange={handleChange} required>
+                    <select id="experience" name="experience" value={models.experience} onChange={(e)=>handleApplyFormChange(e)} required>
                         <option value="" disabled>Select experience level</option>
                         <option value="0-1">Beginner (0-1 year)</option>
                         <option value="1-3">Junior (1-3 years)</option>
@@ -174,9 +177,23 @@ const Apply = () => {
                         <option value="5-10">Professional (5-10+ years)</option>
                     </select>
                 </div>
+                <div className="form-elements">
+                <label htmlFor="profilePicture">profile picture:</label>
+                <input
+                  type="file"
+                  id="profilePicture"
+                  name="profilePicture"
+                  value={models.profilePicture}
+                  onChange={(e)=>handleApplyFormChange(e)}
+                  required
+                />
+              </div>
               <button className="login-signup-btn"type="submit">Register</button>
             </form>
           )}
+          <Link to="/">Go Back Home</Link>
+          {submitted? <Navigate replace to="/login"></Navigate>:""}
+          
         </div>
     );
 }
