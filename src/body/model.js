@@ -1,9 +1,8 @@
-import React,{ useContext } from "react";
+import React,{ useContext, useEffect, useState } from "react";
 import { formContext } from "../context/UserContext";
 import { Link,Outlet } from "react-router-dom";
 
-const Model =({models, classname})=>{
-
+const Model = ({models})=>{
     return(
         <>
         {models.length > 0? models.map(model=>{
@@ -15,7 +14,7 @@ const Model =({models, classname})=>{
                     <div className="model--content">
                         <div className="model--content--wrapper">
                             <h2 className="model--name">{model.name} {model.lastName}</h2>
-                            <h2 className="model--country">Country:{model.country}</h2>
+                            <h2 className="model--country">Country:{model.location.country}</h2>
                             <p className="model--name">Experience:{model.experience} years</p>
                         </div>
                     </div>

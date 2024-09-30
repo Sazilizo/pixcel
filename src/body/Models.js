@@ -9,12 +9,11 @@ const Models =()=>{
     const {filteredModels} = useContext(filterContext);
     const {id} = useParams()
 
-
     return(
         <div className="models-showcase">
             {id? <Outlet/>:
             <>
-            <h2>Models</h2>
+            <h2 className="models-main-heading">Models</h2>
             <FilterByFirstLetter/>
             <div className="models-filters-wrapper">
                 <div className="models-model-filters">

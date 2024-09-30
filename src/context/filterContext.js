@@ -7,7 +7,7 @@ import { formContext } from "./UserContext";
 export const filterContext = createContext();
 
 const FilterContext = ({children})=>{
-    const {models} = useContext(formContext);
+    const {models} = useContext(formContext || "");
     const [filterLetter, setFilterLetter] = useState(Array.from(Array(26)).map((_, i) => String.fromCharCode(i + 65)));
     const [searchName, setSearchName] = useState("");
     const [searchGender, setSearchGender] = useState("")
@@ -29,7 +29,7 @@ const FilterContext = ({children})=>{
         }
 
         if (country) {
-        filtered = filtered.filter(model => model.country.toLowerCase() === country.toLowerCase());
+        filtered = filtered.filter(model => model.location.country.toLowerCase() === country.toLowerCase());
         }
 
         if (filterExp) {
@@ -40,18 +40,17 @@ const FilterContext = ({children})=>{
         filtered = filtered.filter(model => model.name.toLowerCase().startsWith(sameFirstLetters) || model.lastName.toLowerCase().startsWith(sameFirstLetters));
         }
 
-        setFilteredModels(filtered); // Always update the filtered models state
+        setFilteredModels(filtered);
     };
 
-    // Apply the filters whenever one of the filter states changes
     useEffect(() => {
         allFilters();
     }, [searchName, searchGender, country, filterExp, sameFirstLetters]);
         
     const resetFilters =()=>{
         setFilteredModels(models);
+        setFilterExp('');
     }
-    // Example filter usage
     useEffect(() => {
         const filteredResults = allFilters();
         console.log("Filtered models:", filteredResults);
@@ -63,6 +62,7 @@ const FilterContext = ({children})=>{
     
     const searchByName = (name) => {
         setSearchName(name);
+        setSearchName()
     };
     
     const getAllByGender = (gender) => {

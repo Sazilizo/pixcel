@@ -2,20 +2,20 @@ import React, {useEffect, useContext, useState} from "react";
 import { formContext } from "../context/UserContext";
 import { Link } from "react-router-dom";
 import imageCompression from 'browser-image-compression';
+import { managementClient } from "../contentfulManagement";
 
 const UpdateProfile =()=>{
     const {currentUser, submitted, models,setModels,setCurrentUser} = useContext(formContext);
     const [updatedDetails, setUpdatedDetails] = useState([]);
     const [isUpdated, setIsUpdated] = useState(false);
     //this will set models currentUser with update values
-    const updateModel =()=>{
+    const updateModel = async()=>{
         const updatedModel = {...currentUser,...updatedDetails}
         const updatedModels = models.map(model =>
             model.id === currentUser.id ? updatedModel : model
         )
         setModels(updatedModels);
         setCurrentUser(updatedModel)
-        localStorage.setItem('models', JSON.stringify(updatedModels));
         localStorage.setItem('currentUser', JSON.stringify(updatedModel));
     }
 
@@ -81,7 +81,7 @@ const UpdateProfile =()=>{
         console.log(updatedDetails);
         console.log(models)
         console.log(currentUser)
-    }, [isUpdated])
+    }, [isUpdated]);
     return (
         <div className="form-container">
           <h2>Update your profile</h2>

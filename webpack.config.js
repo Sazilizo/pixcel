@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = {
     mode:"development",
@@ -10,6 +11,7 @@ module.exports = {
         path: path.resolve(__dirname, "public"),
         filename: "[name]-bundle.js"
     },
+
     module:{
         rules: [
             {
@@ -34,6 +36,10 @@ module.exports = {
         static: {
         directory: path.join(__dirname, 'public'), // Use 'static' instead of 'contentBase' in newer versions
         },
+  
+        headers: {
+            "Content-Type": "text/css"
+        },
         compress: true,
         port: 3000,
         hot: true,
@@ -44,5 +50,6 @@ module.exports = {
             filename: '[name].css',
             chunkFilename: '[id].css',
         }),
+        new CaseSensitivePathsPlugin()
     ],  
 }

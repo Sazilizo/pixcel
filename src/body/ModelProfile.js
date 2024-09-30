@@ -20,8 +20,8 @@ const ModelProfile =()=>{
                     {currentUser.gender === "F"?<h4>breast size:</h4> :""}
                 </div>
                 <div className="current-user__location-experience">
-                    <h4 className="current-user__location__heading">Country: {currentUser.country}</h4>
-                    <h4 className="current-user__experience__heading">experience: {currentUser.exprerience}</h4>
+                    <h4 className="current-user__location__heading">Country: {currentUser.location.country}</h4>
+                    <h4 className="current-user__experience__heading">experience: {currentUser.exprerience} years</h4>
                 </div>
             </div>
             <div className="current-user__self-description--wrapper">

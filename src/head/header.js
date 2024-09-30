@@ -3,21 +3,18 @@ import Logo from "./logo";
 import Watchlist from "./watchlist";
 import { FaRegUser } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
+import { CiMenuBurger } from "react-icons/ci";
+import { IoCloseOutline } from "react-icons/io5";
 import {Link, useNavigate} from "react-router-dom";
 import { formContext } from "../context/UserContext";
+import NavBar from "./NavBar";
 
 const Header=()=>{
     const {isLoggedIn,setIsLoggedIn, handleLogOut} = useContext(formContext)
     const [search, setSearch] = useState();
-    const [models, setModels] = useState("men");
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const navigate = useNavigate();
 
-    // const loggedIn = Boolean(localStorage.getItem("isLoggedIn"));
-    
-    useEffect(() => {
-        const loggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
-        setIsLoggedIn(loggedIn || false);
-    }, [setIsLoggedIn]);
 
     const LogInLogOutControl = () => {
         if (isLoggedIn) {
@@ -26,15 +23,34 @@ const Header=()=>{
             return <Link to="/login"><FaRegUser /></Link>;
         }
     };
+
+
     useEffect(() => {
         if (!isLoggedIn) {
             navigate("/");
         }
+        const loggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
+        setIsLoggedIn(loggedIn || false);
     }, [isLoggedIn, navigate]);
+
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+    };
+
+    // Update windowWidth on window resize
+    useEffect(() => {
+        // Add event listener on mount
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup event listener on unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     const data = "gather the best and upcoming models and photographers for your portfolio, making life easier for you."
     return(
         <div className="header">
-            <div className="navigation">
+            <div className={windowWidth > 760?"navigation":"collapsible"}>
                 <div className="logo-search-user">
                     <div className="logo">
                         <Logo color="white"/>
@@ -55,33 +71,10 @@ const Header=()=>{
                         
                     </div>
                 </div>
-                <div className="navigation-menu">
-                    <ul>
-                        <li>Home</li>
-                        <li>About Us</li>
-                            <li className="models-group"><Link to="/models">Models</Link>
-                                <ul className="models-listing">
-                                    <li>Men
-                                        <ul>
-                                            <li>Professionals</li>
-                                            <li>Amateurs</li>
-                                        </ul>
-                                    </li>
-                                    <li>Women
-                                        <ul>
-                                            <li>Professionals</li>
-                                            <li>Amateurs</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                
-                            </li>
-                            {!isLoggedIn && <li><Link to="/apply">Apply</Link></li>}
-                        <li>Contact us</li>
-                    </ul>
+                <div className="navigation-menu--wrapper">
+                    <NavBar windowWidth={windowWidth} isLoggedIn={isLoggedIn}/>
                 </div>
             </div>
-            <h1>Searched:{search}</h1>
         </div>
     )
 };

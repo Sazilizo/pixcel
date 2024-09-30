@@ -1,0 +1,299 @@
+.models-showcase{
+    display: flex;
+    width:100%;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;;
+}
+.flex-row{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap:2rem;
+    color:white;
+    font-size: 1.3rem;
+}
+.social-media-contacts{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+.social-media-contacts > *{
+    width:2rem;
+    height:auto;
+    background-color: black;
+    border:2px solid red;
+    color:color;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.homepage-models--wrapper{
+    display: flex;
+    width:100%;
+    flex-direction: column;
+}
+/* models page */
+.alphabet-filter--wrapper{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    place-self: center;
+    place-content: center;
+    place-items: center;
+}
+.models-main-heading{
+    align-items: center;
+    text-transform: capitalize;
+    margin:.5rem auto;
+}
+.alphabet-filter{
+    display: flex;
+    min-width:80%;
+    justify-content: space-around;
+    margin:1em auto;
+    place-self: center;
+    flex-wrap: wrap;
+}
+.alphabet-btn{
+    background-color: white;
+    color:black;
+    border-radius: 5rem;
+    border:1px solid black;
+    font-size: large;
+    padding:.7rem .5rem;
+    cursor: pointer;
+}
+.alphabet-btn:hover{
+    background-color: rgb(250, 246, 240);
+    font-size: large;
+    transition: 500ms ease;
+    text-decoration: underline;
+}
+.models-filters-wrapper{
+    display: flex;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 74%;
+}
+.models-page--showcase{
+    display: grid;
+    max-width: 95%;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap:0;
+    margin: auto;;
+}
+.model-wrapper{
+    width: 18rem;
+    border-radius: 5px;
+    margin: .5rem;
+    border:1px solid grey;
+}
+.model-wrapper:hover{
+    box-shadow: 5px 5px 5px 5px gray;
+}
+.model-image--wrapper{
+    max-width: 17rem;
+    margin: .5rem auto;
+    width:100%;
+    border-radius: 5px;
+}
+.model-image{
+    width:100%;
+    object-fit: cover;
+    height:25rem;
+    border-radius: 5px;
+}
+.model--content{
+    padding:.5rem;
+}
+.model--content--wrapper{
+    line-height: 1.5rem;
+}
+/* Filters */
+.models-model-filters{
+    min-width:15rem;
+}
+.filters{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.filters .filter-elements input{
+    border:none;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    outline: none;
+    font-size: large;
+}
+.filters .filter-elements *{
+    width:100%;
+    padding:0.4rem
+}
+.filters .filter-elements button{
+    border:none;
+    background-color: teal;
+    color:white;
+    cursor: pointer;
+    font-size: medium;
+}
+.filters .filter-elements{
+    margin:.5rem 0 0 0;
+}
+.filters .clearFilters{
+    color:white;
+    background-color: coral;
+    padding:0.4rem;
+    cursor: pointer;
+}
+
+.logo-search-user{
+    border:1px solid green
+}
+
+/*specific model details page*/
+.model-details-page--wrapper{
+    width:100%;
+    margin: auto;
+}
+.model-details--wrapper{
+    margin:auto;
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: 2rem 25rem 1fr;
+    max-width: 95vw;
+}
+.models-details--profile{
+    max-width: 100%;
+    grid-column: 1/2;
+    grid-row: 2;
+    min-height: 20rem;
+}
+.model-details-wrapper{
+    width:100%;
+    grid-column: 2/3;
+    grid-row: 2;
+    max-width: 15rem;
+    padding:1rem;
+    text-transform: capitalize;
+}
+.model-contacts{
+    margin-top:1rem;
+    max-width: 70%;
+}
+.model-details--motivation{
+    width:100%;
+    grid-column: 3/5;
+    grid-row: 2;
+    padding:1rem;
+    min-height: 5rem;
+    height:25rem;
+}
+.models-details--profile img{
+    width:100%;
+    height:20rem;
+    object-fit: cover;
+}
+.model-details--gallery{
+    grid-column: 1/5;
+    grid-row: 3;
+    border:1px solid red;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem,1fr));
+    place-items: center;
+    gap:.5rem;
+}
+.gallery-item{
+    width: 18rem;
+    height:18rem;
+    border:1px solid black
+}
+.gallery-item:hover{
+    box-shadow: 5px 5px 5px 5px gray;
+}
+@media (max-width:940px){
+    .models-filters-wrapper{
+        width:100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .models-model-filters{
+        min-width:100%;
+        border:1px solid black
+    }
+    .models-page--showcase{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        place-items: center;
+    }
+    .model-wrapper{
+        width: 11rem;
+        border-radius: 5px;
+        margin: .5rem;
+        font-size: .6rem;
+    }
+    .model-image--wrapper{
+        max-width: 11rem;
+        margin: .5rem auto;
+        width:100%;
+        border-radius: 5px;
+    }
+    .model-image{
+        width:100%;
+        object-fit: cover;
+        height:16rem;
+        border-radius: 5px;
+    }
+    
+    /* Filters */
+    .models-model-filters{
+        width: 100%;
+    }
+    .filters{
+        width:100%;
+    }
+    .model--content--wrapper{
+        line-height: 1rem;
+    }
+    .model-details--wrapper{
+        margin:2rem auto;
+        display: grid;
+        grid-template-columns: repeat(2,50%);
+        grid-template-rows: 2rem 20rem 10rem 1fr;
+        max-width: 95vw;
+        grid: 1rem;
+    }
+    .models-details--profile{
+        max-width: 100%;
+        grid-column: 1/2;
+        grid-row: 2;
+        min-height: 20rem;
+    }
+    .model-details-wrapper{
+        width:100%;
+        grid-column: 2/3;
+        grid-row: 2;
+        margin-right: 1rem;
+        min-width: 100%;
+    }
+    .model-details--motivation{
+        width:100%;
+        grid-column: 1/3;
+        grid-row: 3;
+        height:fit-content
+    }
+    .model-details--gallery{
+        grid-column: 1/3;
+        grid-row: 4;
+        display: grid;
+        width:100%;
+        grid-template-columns: repeat(auto-fill, minmax(11.5rem,1fr));
+
+    }
+    .gallery-item{
+        width: 11.5rem;
+        height:18rem;
+        border:1px solid black;
+        margin:0;
+    }
+}
