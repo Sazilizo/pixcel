@@ -1,8 +1,27 @@
 import React,{ useContext, useEffect, useState } from "react";
 import { formContext } from "../context/UserContext";
-import { Link,Outlet } from "react-router-dom";
+import { Link,Outlet, useLocation } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 
 const Model = ({models})=>{
+    const location = useLocation();  // Check if this is causing the issue
+    const [filteredByGender, setFilteredByGender] = useState([]);
+
+    const handleFilterByGender = () => {
+        // Assuming `models` is an array available in this component
+        const filtered = models.filter((model) =>
+        location.pathname.includes("women") ? model.gender === "F" : model.gender === "M"
+        );
+        setFilteredByGender(filtered);
+    };
+
+    useEffect(() => {
+        handleFilterByGender();
+    }, [location.pathname]);
+
+    useEffect(()=>{
+        console.log(filteredByGender);
+    },[location.pathname])
     return(
         <>
         {models.length > 0? models.map(model=>{
@@ -15,7 +34,7 @@ const Model = ({models})=>{
                         <div className="model--content--wrapper">
                             <h2 className="model--name">{model.name} {model.lastName}</h2>
                             <h2 className="model--country">Country:{model.location.country}</h2>
-                            <p className="model--name">Experience:{model.experience} years</p>
+                            <p className="model--experience">Experience:{model.experience} years</p>
                         </div>
                     </div>
                 </div>

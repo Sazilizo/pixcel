@@ -1,5 +1,5 @@
-import { createClient } from 'contentful-management';
+// import { createClient } from 'contentful-management';
 
-export const managementClient = createClient({
-    accessToken: 'wrfSg_p9uiMbmlIb-EMuVmW1eIHYbnwkA4Xhmuuuzd8'
-  })
+// export const managementClient = createClient({
+//     accessToken: 'wrfSg_p9uiMbmlIb-EMuVmW1eIHYbnwkA4Xhmuuuzd8'
+//   })

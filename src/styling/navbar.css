@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Yeseva+One&display=swap');
 @media  (max-width:760px) {
+    .header{
+        height:60vh;
+        overflow: hidden;
+    }
     .logo-search-user{
         position: relative;
-        width:60%;
+        width:80vw;
         align-self: right;
         float: right;
         z-index: 4;
+    }
+    .logo{
+        width:30vw;
+        border:1px solid red;
     }
     .navigation-menu a{
         color:black;
@@ -22,18 +31,22 @@
     .navigation-menu--small-screen a{
         color:black;
         text-decoration: none;
+        font-family: "Yeseva One", serif;
     }
     .navigation-menu--small-screen .nav-links{
         list-style:none;
         padding:1vh 0;
         margin: 2rem 0;
         width:100%;
+        font-size: 2.6vw;
+        font-family: "Yeseva One", serif;
     }
     .navigation-menu--small-screen .nav-links li{
         padding:1rem 1rem;
         color:black;
         cursor: pointer;
         width:auto;
+        font-family: "Yeseva One", serif;
     }
     .navigation-menu--small-screen .nav-links li:hover{
         padding-left: 1rem;
@@ -109,6 +122,7 @@
     cursor: pointer;
     text-align: center;
     text-transform: capitalize;
+    font-family: "Yeseva One", serif;
 }
 .navigation-menu ul li ul{
     display: none;

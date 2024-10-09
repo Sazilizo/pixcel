@@ -225,9 +225,7 @@ const Apply = () => {
             </div>
           </form>
           </>)}
-          <Link to="/">Go Back Home</Link>
-          {isSubmitted? <Navigate replace to="/login"></Navigate>:""}
-          
+          {/* <Link to="/">Go Back Home</Link> */}
         </div>
     );
 }

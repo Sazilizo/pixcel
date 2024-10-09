@@ -1,9 +1,10 @@
 import React, {createContext, useState, useEffect} from "react";
 import imageCompression from 'browser-image-compression';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { client } from "../contentful";
 import { createClient} from "contentful-management";
 import { v4 as uuidv4 } from 'uuid';
+
 export const formContext = createContext();
 
 const UsersContext = ({children})=>{
@@ -13,6 +14,7 @@ const UsersContext = ({children})=>{
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentUser, setCurrentUser] = useState("")
     const [submitted, setSubmitted] = useState(false);
+    const [pageData, setPageData] = useState();
     //need it to log user in
     const [user, setUser] = useState({
         email:"",
@@ -78,6 +80,10 @@ const UsersContext = ({children})=>{
         
     }
 
+    const handleFilterByGender=()=>{
+
+    }
+
     const handleLogin=()=>{
         if (!user.email || !user.password) {
             setLoggedMessage({ msg: "Email and password are required.", res: "error" });
@@ -107,14 +113,7 @@ const UsersContext = ({children})=>{
         setLoggedMessage({msg:"", res:""})
 
     }
-    // const hashPassword = async (password) => {
-    //     const saltRounds = 10;
-    //     const hashedPassword = await bcrypt.hash(password, saltRounds);
-    //     return hashedPassword;
-    // };
-    
     const createEntry =async(model)=>{
-        // const hashedPassword = await hashPassword(models.password);
         const client = createClient({
             accessToken: "CFPAT-cSBIHujJ3IoArRwvU5qiv78208xR7miMB1NI3e_877k"
         })
@@ -204,17 +203,19 @@ const UsersContext = ({children})=>{
             setModels( ...newModels);
         })
         .catch(console.error)
+    },[submitted])
 
-        client.getEntries({content_type:"user"})
+    useEffect(()=>{
+        let pageData = []
+        client.getEntries({content_type:"page"})
         .then(res=>{
             console.log("users:",res.items[0].fields)
-            // newModels.push(res.items[0].fields)
-            // setModels(...newModels)
+            pageData.push(res.items[0].fields)
+            setPageData(...pageData)
         })
         .catch(console.error)
-
-        console.log(models)
-    },[submitted])
+        // console.log("models",models)
+    },[])
 
     useEffect(()=>{
         if (submitted) {
@@ -236,13 +237,16 @@ const UsersContext = ({children})=>{
         // if (!isLoggedIn) navigate("/")
         console.log(currentUser)
     }, [isLoggedIn]);
+    useEffect(() => {
+        console.log("Current Path:", window.location.pathname);
+    }, [window.location.pathname]);
 
     // useEffect(()=>{
     //     localStorage.clear();
     // },[])
     console.log("from context:",models)
     return(
-        <formContext.Provider value={{currentUser,handleApplyFormChange, handleSubmit,handleLogin,handleLoginChange,handleLogOut,handleLoginSubmit,loggedMessage,isLoggedIn, models,setCurrentUser,setModels,submitted,setIsLoggedIn,user}}>
+        <formContext.Provider value={{currentUser,handleApplyFormChange, handleSubmit,handleLogin,handleLoginChange,handleLogOut,handleLoginSubmit,loggedMessage,isLoggedIn, models,pageData,setCurrentUser,setModels,submitted,setIsLoggedIn,user}}>
             {children}
         </formContext.Provider>
     )

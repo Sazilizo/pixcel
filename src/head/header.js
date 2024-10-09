@@ -8,6 +8,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import {Link, useNavigate} from "react-router-dom";
 import { formContext } from "../context/UserContext";
 import NavBar from "./NavBar";
+import HeaderSlider from "./headerSlider";
 
 const Header=()=>{
     const {isLoggedIn,setIsLoggedIn, handleLogOut} = useContext(formContext)
@@ -75,6 +76,7 @@ const Header=()=>{
                     <NavBar windowWidth={windowWidth} isLoggedIn={isLoggedIn}/>
                 </div>
             </div>
+            <HeaderSlider/>
         </div>
     )
 };

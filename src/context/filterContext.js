@@ -36,12 +36,9 @@ const FilterContext = ({children})=>{
         filtered = filtered.filter(model => model.experience === filterExp);
         }
 
-        if (sameFirstLetters) {
-        filtered = filtered.filter(model => model.name.toLowerCase().startsWith(sameFirstLetters) || model.lastName.toLowerCase().startsWith(sameFirstLetters));
-        }
-
         setFilteredModels(filtered);
     };
+
 
     useEffect(() => {
         allFilters();
@@ -76,23 +73,34 @@ const FilterContext = ({children})=>{
     const getAllByExperience = (exp) => {
         setFilterExp(exp);
     };
-    
-    const findByFirstLetter = (letter) => {
-        setSameFirstLetter(letter);
-    };
-    
 
+    const handleFilter = (data, filterCriteria, setState, property = "name") => {
+        if (!data || !Array.isArray(data)) return;
+      
+        // Apply the filtering based on the first letter or any other logic
+        const filteredData = data.filter((item) => {
+          const valueToCheck = item[property]?.toLowerCase() || "";
+          return valueToCheck.startsWith(filterCriteria.toLowerCase());
+        });
+      
+        // Update the component's state with the filtered data
+        setState(filteredData);
+      }
+
+    const findByFirstLetter =(data,letter)=>{
+        handleFilter(initialModels, letter, setFilteredModels, "name")
+    }
+    
+    
     useEffect(()=>{
-        const filteredModels =findByFirstLetter();
         const namedModels =searchByName();
-        console.log("flteredModels",filteredModels);
         console.log("from search Bar", namedModels);
         console.log(country)
 
     },[]);
 
     return(
-        <filterContext.Provider value={{resetFilters,filteredModels,findByFirstLetter,filterLetter, searchByName,getAllByCountry,getAllByExperience,getAllByGender}}>
+        <filterContext.Provider value={{findByFirstLetter,resetFilters,filteredModels,filterLetter, searchByName,getAllByCountry,getAllByExperience,getAllByGender}}>
             {children}
         </filterContext.Provider>
     );

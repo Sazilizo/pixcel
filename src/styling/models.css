@@ -100,7 +100,7 @@
 .model-image{
     width:100%;
     object-fit: cover;
-    height:25rem;
+    height:22rem;
     border-radius: 5px;
 }
 .model--content{
@@ -111,15 +111,20 @@
 }
 /* Filters */
 .models-model-filters{
-    min-width:15rem;
+    width:30vw;
+}
+.filter-btn-wrapper{
+    position: relative;
 }
 .filters{
+    position:absolute;
     display: flex;
     justify-content: center;
     flex-direction: column;
     width: fit-content;
+    z-index: 2;
+    background-color: white;
 }
-
 .filters .filter-elements input{
     border:none;
     border-bottom: 1px solid rgba(0,0,0,0.5);
@@ -142,7 +147,7 @@
 }
 .filters .clearFilters{
     color:white;
-    background-color: coral;
+    background-color: red;
     padding:0.4rem;
     cursor: pointer;
 }
@@ -211,11 +216,26 @@
 .gallery-item:hover{
     box-shadow: 5px 5px 5px 5px gray;
 }
+@media (max-width:740px){
+    .model--experience{
+        font-size: 9vw;
+        background-color: orange;
+    }
+    .model--name{
+        font-size: 9.3vw;
+    }
+}
 @media (max-width:940px){
     .models-filters-wrapper{
         width:100%;
         display: flex;
         flex-direction: column;
+    }
+    .model--experience{
+        font-size: 2.8vw;
+    }
+    .model--name{
+        font-size: 3.3vw;
     }
     .models-model-filters{
         min-width:100%;
@@ -223,14 +243,15 @@
     }
     .models-page--showcase{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
         place-items: center;
     }
     .model-wrapper{
-        width: 11rem;
+        width: 10rem;
         border-radius: 5px;
         margin: .5rem;
         font-size: .6rem;
+        height:22rem
     }
     .model-image--wrapper{
         max-width: 11rem;
@@ -243,6 +264,7 @@
         object-fit: cover;
         height:16rem;
         border-radius: 5px;
+        margin-top:0;
     }
     
     /* Filters */
@@ -250,7 +272,7 @@
         width: 100%;
     }
     .filters{
-        width:100%;
+        width:50vw;
     }
     .model--content--wrapper{
         line-height: 1rem;

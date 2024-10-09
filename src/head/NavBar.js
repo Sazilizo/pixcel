@@ -15,11 +15,29 @@ const NavBar = ({windowWidth,isLoggedIn}) => {
   return (
     <nav className={windowWidth > 760 ? "navigation-menu" : "navigation-menu--small-screen black-bcg"}>
         <ul className={isMenuOpen || windowWidth > 760 ? "nav-links" : "nav-links hidden"}>
-            <li>Home</li>
-            <li>About Us</li>
-            <li className="models-group">
-                <Link to="/models">Models</Link>
-                    <div className="menu-model-categories">
+            <li><Link to="/">Home</Link></li>
+            <li><a href="#about-us">About</a></li>
+            <li>
+                <Link to="/models/men">Men</Link>
+            </li>
+            <li><Link to="/models/women">Women</Link></li>
+                {!isLoggedIn && <li className="login-logout-container">
+                    <Link to="/apply">Apply</Link>
+                </li>}
+                <li><a href="#contact-us">Contact us</a></li>
+        </ul>
+        {windowWidth <= 760 && (
+        <button type="button" className="menu-control" onClick={openCloseTrack}>
+                {isMenuOpen ? <IoCloseOutline fontSize="20px"/> : <CiMenuBurger fontSize="20px" />}
+        </button>
+        )}
+     </nav>
+  )
+}
+
+export default NavBar
+
+{/* <div className="menu-model-categories">
                         <ul>
                             <li className="models-group__subgroup">Men
                                 <ul>
@@ -34,20 +52,4 @@ const NavBar = ({windowWidth,isLoggedIn}) => {
                                 </ul>
                             </li>
                         </ul>
-                    </div>
-                </li>
-                {!isLoggedIn && <li className="login-logout-container">
-                    <Link to="/apply">Apply</Link>
-                </li>}
-            <li>Contact us</li>
-        </ul>
-        {windowWidth <= 760 && (
-        <button type="button" className="menu-control" onClick={openCloseTrack}>
-                {isMenuOpen ? <IoCloseOutline fontSize="20px"/> : <CiMenuBurger fontSize="20px" />}
-        </button>
-        )}
-     </nav>
-  )
-}
-
-export default NavBar
+                    </div> */}

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { filterContext } from '../context/filterContext';
- 
+import { IoFilter } from "react-icons/io5";
+
 
 export const SearchByNameFilter=()=>{
     const {searchByName} = useContext(filterContext);
@@ -87,8 +88,18 @@ export const FilterByExperience =()=>{
     )
 };
 
-export const FilterByFirstLetter =()=>{
-    const {findByFirstLetter,filterLetter} = useContext(filterContext);
+
+export const FilterByFirstLetter =({ models ,setFilteredModels })=>{
+    console.log(models)
+    const {filterLetter} = useContext(filterContext);
+    const findByFirstLetter = (letter) => {
+        // Filter models based on the first letter
+        const filtered = models.filter((model) => model.name.toLowerCase().startsWith(letter));
+        setFilteredModels(filtered.length > 0 ? filtered : models);
+        console.log(filtered)
+    }
+    
+
     return (
         <div className="alphabet-filter--wrapper">
             <div className="alphabet-filter">
@@ -111,14 +122,20 @@ export const ResetFilters=()=>{
 }
 
 const PageFilters = ()=>{
+    const [isFiltersOpen, setIsFIltersOpen] = useState(false)
+
+    const handleOpenFilters =()=>{
+        setIsFIltersOpen(!isFiltersOpen)
+    }
     return (
-        <div className="filters">
-            <ResetFilters/>
-            <SearchByNameFilter/>
-            <SearchByCountry/>
-            <SearchByGender/>
-            <FilterByExperience/>
-        </div>
+        <>
+            <div className="filter-btn-wrapper">
+                <span>Add filters</span><IoFilter className="filter-btn"onClick={()=>handleOpenFilters()}/>
+                {isFiltersOpen?
+                    "":""
+                }
+            </div>
+        </>
     )
 };
 
