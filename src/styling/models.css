@@ -215,6 +215,7 @@
     grid-template-columns: repeat(auto-fit, minmax(18rem,1fr));
     place-items: center;
     gap:.5rem;
+    margin-top: 2rem;
 }
 .gallery-item{
     width: 18rem;
