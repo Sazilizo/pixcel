@@ -316,7 +316,7 @@ const UpdateProfile =()=>{
                   value={currentUser.motivation}
                   onChange={(e)=>handleFormChange(e)}
                   required
-                  minLength={200}
+                  minLength={20}
                   maxLength={500}
                 />
               </div> 

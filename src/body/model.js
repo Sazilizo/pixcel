@@ -33,8 +33,8 @@ const Model = ({models})=>{
                     <div className="model--content">
                         <div className="model--content--wrapper">
                             <h2 className="model--name">{model.name} {model.lastName}</h2>
-                            <h2 className="model--country">Country:{model.location.country}</h2>
-                            <p className="model--experience">Experience:{model.experience} years</p>
+                            <h2 className="model--country">Country:{model.location?.country}</h2>
+                            <p className="model--experience">Experience:{model?.experience} years</p>
                         </div>
                     </div>
                 </div>

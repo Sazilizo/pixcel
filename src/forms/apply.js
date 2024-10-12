@@ -5,36 +5,43 @@ import {useForm} from "react-hook-form";
 
 const Apply = () => {
     // const {handleApplyFormChange,handleSubmit, models,submitted} = useContext(formContext);
-    const [model, setModel] = useState([]);
-    const {register, handleSubmit,setValue, formState:{errors, isSubmitted,isSubmitting}} = useForm();
-
+    const { handleModelSubmit,setFile } = useContext(formContext);
+    const [images, setImages]= useState([]) 
+    const { register, handleSubmit: handleFormSubmit, setValue, formState: { errors, isSubmitted, isSubmitting } } = useForm();
     const textareaRef = useRef(null);
-    // const motivationValue = watch('motivation', '');
+  
 
-    // const autoResize = () => {
-    //   const textarea = textareaRef.current;
-    //   textarea.style.height = 'auto'; // Reset height
-    //   textarea.style.height = `${textarea.scrollHeight}px`; // Set height based on scrollHeight
-    // };
-
-    const onSubmit = (data)=>{
-      console.log(data)
-      new Promise(resolve=> setTimeout(resolve,2000))
-    }
-    const handleFileChange = (event) => {
-      const files = Array.from(event.target.files);
-      setValue('images', files);
-      console.log(files) // Set files to the images field
+    
+    // Handler for profile picture upload
+    const handleProfilePictureChange = (e) => {
+      const file = e.target.files[0];  // Single file for profile picture
+      setImages((prevState) => ({
+        ...prevState,
+        profilePicture: file,  // Set the profile picture
+      }));
+    };
+    
+    // Handler for multiple images upload
+    const handleFileChange = (e) => {
+      const files = Array.from(e.target.files);  // Convert FileList to Array
+      setImages((prevState) => ({
+        ...prevState,
+        otherImages: files,  // Set the array of selected images
+      }));
+    };
+    const onSubmit = (data) => {
+      console.log(data);
+      handleModelSubmit(data); 
     };
     useEffect(()=>{
-      console.log("is submitted:", isSubmitted);
-      console.log("is submitting:", isSubmitting)
-    },[])
+      console.log("images",images);
+      setFile(images)
+    },[images])
     return (
         <div className="form-container">
           {isSubmitting? <p>Creating an account</p>:(<>
           <h2>Apply with your details here</h2>
-          <form className="form-details" onSubmit={handleSubmit(onSubmit)}>
+          <form className="form-details" onSubmit={handleFormSubmit(onSubmit)}>
             <div className="form-left-half">
               <div className="form-element">
                 <input {...register("name", 
@@ -77,8 +84,8 @@ const Apply = () => {
               <div className="form-element">
                 <select {...register("gender", {required:true})}>
                   <option disabled value="">Select Gender</option>
-                  <option value="Female">Female</option>
-                  <option value="Male">Male</option>
+                  <option value="F">Female</option>
+                  <option value="M">Male</option>
                 </select>
                 {errors.gender && <p style={{"color":"red"}}>This field cannot be empty</p>}
               </div>
@@ -194,7 +201,7 @@ const Apply = () => {
                     {...register("motivation", {
                       required: "Please let us know a little about yourself",
                       minLength: {
-                        value: 250,
+                        value: 50,
                         message: "Please enter a minimum of 250 characters"
                       }
                     })} 
@@ -203,25 +210,24 @@ const Apply = () => {
                   {errors.motivation && <p style={{ color: "red" }}>{errors.motivation.message}</p>}
                   {/* <p>{motivationValue.length}/250 characters</p> Show character count */}
                 </div>
-              <div className="form-element">
-                  <input type="file" {...register("profilePicture", 
-                    {required: "File is required",
-                      validate: {
-                        fileType: (value) =>
-                          value[0] && ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'].includes(value[0].type) || "Only PNG, JPG/JPEG and webp formats are allowed"
-                        }})} ></input>
-                  {errors.profilePicture && <p style={{"color":"red"}}>{errors.profilePicture.message}</p>}
-                </div>
+                <div className="form-element">
+                <input
+                  type="file"
+                  name="profilePicture"
+                  accept="image/png, image/jpeg, image/webp"
+                  onChange={handleProfilePictureChange}
+                />
+              </div>
                 <div className="form-element">
                   <input
+                    name="gallery"
                     type="file"
                     accept="image/png, image/jpeg, image/webp"
                     multiple
-                    onChange={handleFileChange} // Handle file change
+                    onChange={handleFileChange} 
                   />
-                  {errors.images && <p style={{ color: "red" }}>{errors.images.message}</p>}
               </div>
-              <button type="submit">Submit</button>
+              <button onClick={handleFormSubmit} className="login-signup-btn"type="submit">Submit</button>
             </div>
           </form>
           </>)}

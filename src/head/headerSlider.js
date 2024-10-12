@@ -38,25 +38,22 @@ const HeaderSlider = () => {
                 className="header-slider-image"
                 src={slidersList[0][sliderIterator].image}
                 ></img>
-                <p>{slidersList[0][sliderIterator].text}</p>
             </div>
             <div className="slider slider2" style={{"backgroundColor":`${slidersList[1][sliderIterator].image}`}}>
             <img 
                 className="header-slider-image"
                 src={slidersList[1][sliderIterator].image}
                 ></img>
-                <p>{slidersList[1][sliderIterator].text}</p>
             </div>
             <div className="slider slider3" style={{"backgroundColor":`${slidersList[2][sliderIterator].image}`}}>
                 <img 
                 className="header-slider-image"
                 src={slidersList[2][sliderIterator].image}
                 ></img>
-                <p>{slidersList[2][sliderIterator].text}</p>
             </div>
         </div>
     </div>
   )
 }
 
-export default HeaderSlider
+export default HeaderSlider;

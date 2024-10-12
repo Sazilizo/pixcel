@@ -15,32 +15,36 @@ const Login = ()=>{
         <>
             <div className="login-form-control">
                 <form className="form-details" onSubmit={handleLoginSubmit}>
-                    <div className="form-elements">
-                        <label htmlFor="email">Email:</label>
+                    <div className="form-element">
                         <input
                         type="email"
                         id="email"
                         name="email"
                         value={user.email}
                         onChange={handleLoginChange}
+                        placeholder="enter your email"
                         required
                         />
                     </div>
 
-                    <div className="form-elements">
-                        <label htmlFor="password">password:</label>
+                    <div className="form-element">
                         <input
                         type="password"
                         id="password"
                         name="password"
                         value={user.password}
                         onChange={handleLoginChange}
+                        placeholder="enter your password"
                         required
                         />
                     </div>
-                    <button className="login-signup-btn"type="submit" onClick={(e)=>handleLogin(e)}>Log in</button>
+                    <div className="form-btns">
+                        <div className="apply-from-login">
+                        {loggedMessage.res === "success"? <p style={{color:"green"}}>{loggedMessage && loggedMessage.msg}</p>: <div><p style={{color:"red"}}>{loggedMessage && loggedMessage.msg}</p> <Link to="/apply">Create account?</Link> </div>}
+                        </div>
+                        <button className="login-signup-btn"type="submit" onClick={(e)=>handleLogin(e)}>Log in</button>
+                    </div>
                 </form>
-                {loggedMessage.res === "success"? <p style={{color:"green"}}>{loggedMessage && loggedMessage.msg}</p>: <div><p style={{color:"red"}}>{loggedMessage && loggedMessage.msg}</p> <Link to="/apply">Create account?</Link> </div>}
             </div> 
         </>
        

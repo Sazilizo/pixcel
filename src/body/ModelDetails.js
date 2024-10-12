@@ -8,13 +8,14 @@ const ModelDetails = () => {
     const {id} = useParams();
 
     // finding the model with the id equalling usParams's
-    const model = models.filter((model)=> model.id === parseInt(id));
+    const model = models.filter((model)=> model.id === id);
     console.log(useParams());
+    console.log(models)
   return (
     <div className="model-details-page--wrapper">
         {
             model && model.map((modelData)=>{
-                console.log(modelData.location.country)
+                console.log("modelData",modelData.location.country)
                 return (
                     <div key={id} className="model-details--wrapper">
                         <div className="model-name--wrapper">
@@ -39,12 +40,12 @@ const ModelDetails = () => {
                                 <p>{modelData.motivation}</p>
                             </div>
                             <div className="model-details--gallery">
-                                {/* {modelData.gallery && modelData.gallery.map((image, idx) => (
+                                {modelData.gallery && modelData.gallery.map((image, idx) => (
                                 <div key={idx} className="gallery-item">
                                     <img src={image} alt={`${modelData.name}'s gallery images`} className="gallery-image" />
                                 </div>
-                                ))} */}
-                                <div className="gallery-item">
+                                ))}
+                                {/* <div className="gallery-item">
 
                                 </div>
                                 <div className="gallery-item">
@@ -67,7 +68,7 @@ const ModelDetails = () => {
                                 </div>
                                 <div className="gallery-item">
                                     
-                                </div>
+                                </div> */}
                             </div>
                     </div>
                 )

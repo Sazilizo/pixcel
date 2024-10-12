@@ -39,7 +39,7 @@ const Home = () => {
   return (
     <>
         <div className="home-container">
-            <div id="about-us" className="about-us-intro-wrapper">
+            <div id="/about-us" className="about-us-intro-wrapper">
                 <div className="about-us-intro border-div">
                     <h2 className="secondary-heading">{pageData && pageData.aboutContent.heading}</h2>
                     <p>{pageData && pageData.aboutContent.about}</p>

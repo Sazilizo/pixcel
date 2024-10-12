@@ -5,7 +5,7 @@ import { FaRegUser } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoCloseOutline } from "react-icons/io5";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import { formContext } from "../context/UserContext";
 import NavBar from "./NavBar";
 import HeaderSlider from "./headerSlider";
@@ -15,11 +15,12 @@ const Header=()=>{
     const [search, setSearch] = useState();
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const navigate = useNavigate();
+    const location = useLocation();
 
 
     const LogInLogOutControl = () => {
         if (isLoggedIn) {
-            return <button onClick={handleLogOut}>Log out</button>;
+            return <button className="logout-btn" onClick={handleLogOut}>Log out</button>;
         } else {
             return <Link to="/login"><FaRegUser /></Link>;
         }
@@ -34,6 +35,14 @@ const Header=()=>{
         setIsLoggedIn(loggedIn || false);
     }, [isLoggedIn, navigate]);
 
+    const getDynamicHeight = () => {
+        if ((location.pathname === "/models/women" || location.pathname === "/models/men")) {
+          return '30vh';
+        }
+        return '90vh';
+      };
+      
+      const dynamicHeight = getDynamicHeight();
     const handleResize = () => {
         setWindowWidth(window.innerWidth);
     };
@@ -48,23 +57,14 @@ const Header=()=>{
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-    const data = "gather the best and upcoming models and photographers for your portfolio, making life easier for you."
     return(
-        <div className="header">
+        <div className="header" style={{"height":dynamicHeight}}>
             <div className={windowWidth > 760?"navigation":"collapsible"}>
                 <div className="logo-search-user">
                     <div className="logo">
                         <Logo color="white"/>
                     </div>
-                    {/* <div className="search-bar">
-                        <input onChange={(e)=>handleSearch(e)} type="search"></input>
-                        <IoSearch className="search-icon"/>
-                    </div> */}
                     <div className="user-history">
-                        {/* {setTimeout(()=>{
-                            <p>{loggedMessage}</p>
-                        },3000)} */}
-
                         {
                             LogInLogOutControl()
                         }
@@ -72,11 +72,11 @@ const Header=()=>{
                         
                     </div>
                 </div>
-                <div className="navigation-menu--wrapper">
+                <div className={windowWidth > 760 ? "navigation-menu--wrapper sticky-menu": "navigation-menu-wrapper"}>
                     <NavBar windowWidth={windowWidth} isLoggedIn={isLoggedIn}/>
                 </div>
             </div>
-            <HeaderSlider/>
+            {location.pathname === "/" || location.pathname === "/about"?<HeaderSlider/>:""}
         </div>
     )
 };

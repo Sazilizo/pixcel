@@ -21,6 +21,7 @@ const Men = () => {
     }, [location.pathname]);
   return (
     <div className="models-showcase">
+        <h2 className="secondary-heading">Men</h2>
         <FilterByFirstLetter models={filteredByGender} setFilteredModels={setDisplayedModels} />
         <div className="models-page--showcase">
             <Model models={displayedModels}/>

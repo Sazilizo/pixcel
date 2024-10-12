@@ -38,7 +38,7 @@ const ModelProfile =()=>{
             </div>
 
             <div className="update-details-btn">
-                <Link to="/update-profile">update profile</Link>
+                <Link to="/models/update-profile">update profile</Link>
             </div>
         </div>
     );
