@@ -500,6 +500,14 @@ footer{
     .form-right-half{
         width:100%;
     }
+    .login-form-control{
+        width:80vw;
+        margin:3rem auto;
+        font-size: 1.3rem !important;
+    }
+    .apply-from-login{
+        width:70vw;
+    }
     .footer-section{
         margin-top: 2rem;
         width:95vw;
@@ -559,8 +567,14 @@ footer{
     .logo{
         width:30vw;
     }
+    .logout-btn{
+        width:100vw;
+        padding:5px
+    }
     .user-history{
-        right:20%;
+        right:-20%;
+        top:7px;
+        width:30vw;
     }
     .navigation-menu a{
         color:black;
@@ -729,6 +743,9 @@ footer{
     padding:.5rem;
     border:2px solid red;
     border-radius: 5rem;
+    position: absolute;
+    top:-1%;
+    font-size: 1rem ;
 }
 .nav-links li a{
     width:100%;

@@ -23,7 +23,7 @@ const router = createBrowserRouter([
             {path:"models/women", element:<Women/>},
             { path: 'models/:id', element: <ModelDetails /> },
             // { path: 'models/:id/update-profile', element: <UpdateProfile /> },
-            { path: 'models/update-profile', element: <UpdateProfile /> },
+            { path: 'models/:id/update-profile', element: <UpdateProfile /> },
         ],
     },
     { path: '/apply', element: <Apply /> },

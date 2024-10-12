@@ -499,6 +499,14 @@ footer{
     .form-right-half{
         width:100%;
     }
+    .login-form-control{
+        width:80vw;
+        margin:3rem auto;
+        font-size: 1.3rem !important;
+    }
+    .apply-from-login{
+        width:70vw;
+    }
     .footer-section{
         margin-top: 2rem;
         width:95vw;

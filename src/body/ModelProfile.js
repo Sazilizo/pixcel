@@ -1,47 +1,47 @@
 import React, {useEffect, useContext, useState} from "react";
 import { formContext } from "../context/UserContext";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+
 //this is for when the model has logged in, this is what they will see
 // instead of other profiles
 const ModelProfile =()=>{
     const {currentUser} = useContext(formContext);
-    return(
-        <div className="current-user--wrapper">
-            <div className="current-user__image-wrapper">
-                <img className="model-image" src={currentUser.profilePicture} alt="model profile"></img>
-            </div>
-            <div className="current-user__primary-description">
-                <div className="current-user__names">
-                    <h1 className="current-user__names--heading">{`${currentUser.name} ${currentUser.lastName}`}</h1>
-                </div>
-                <div className="current-user__features">
-                    <h4>weight:{currentUser.weight}</h4>
-                    <h4>height:{currentUser.height}</h4>
-                    {currentUser.gender === "F"?<h4>breast size:</h4> :""}
-                </div>
-                <div className="current-user__location-experience">
-                    <h4 className="current-user__location__heading">Country: {currentUser.location.country}</h4>
-                    <h4 className="current-user__experience__heading">experience: {currentUser.exprerience} years</h4>
-                </div>
-            </div>
-            <div className="current-user__self-description--wrapper">
-                <p className="current-user__self-description-text">
-                    {currentUser?.motivation}
-                </p>
-            </div>
-            <div className="current-user__gallery-wrapper">
-                <div className="current-user__gallery">
-                    {currentUser?.gallery && currentUser.gallery.map((images,idx)=>{
-                        return <img key={idx} src={images} alt={`${currentUser.name}'s gallery images`} width={200} height={300}></img>
-                    }) }
-                </div>
-            </div>
 
-            <div className="update-details-btn">
-                <Link to="/models/update-profile">update profile</Link>
-            </div>
-        </div>
-    );
+    return(
+    <div className="model-details-page--wrapper">
+                    <div className="model-details--wrapper">
+                        <div className="model-name--wrapper">
+                                <h1 className="model-details-heading">{currentUser?.name +" "+ currentUser?.lastName}</h1>
+                            <Link to={`/models/${currentUser.id}/update-profile`}>update profile</Link>
+                        </div>
+                            <div className="models-details--profile">
+                                <img className="model-image"src={currentUser?.profilePicture} alt={currentUser?.name +" "+ currentUser?.lastName}/>
+                            </div>
+                            <div className="model-details-wrapper">
+                                <p>country:{currentUser?.location.country}</p>
+                                <p>province/state:{currentUser?.location.province}</p>
+                                <p>city:{currentUser?.location.city}</p>
+                                <p>experience:{currentUser?.experience} years</p>
+                                <p>weight:{currentUser?.weight} kg</p>
+                                <p>height:{currentUser?.height} cm</p>
+                                {currentUser?.gender === "F"? <p>breast size: {currentUser?.breastSize}</p>:""}
+                                <div className="model-contacts">
+                                    
+                                </div>
+                            </div>
+                            <div className="model-details--motivation">
+                                <p>{currentUser?.motivation}</p>
+                            </div>
+                            <div className="model-details--gallery">
+                                {currentUser?.gallery.map((image, idx) => (
+                                <div key={idx} className="gallery-item">
+                                    <img src={image} alt={`${currentUser?.name}'s gallery images`} className="gallery-image" />
+                                </div>
+                                ))}
+                            </div>
+                    </div>
+    </div>
+    )
 };
 
 export default ModelProfile;

@@ -42,7 +42,7 @@ const Login = ()=>{
                         <div className="apply-from-login">
                         {loggedMessage.res === "success"? <p style={{color:"green"}}>{loggedMessage && loggedMessage.msg}</p>: <div><p style={{color:"red"}}>{loggedMessage && loggedMessage.msg}</p> <Link to="/apply">Create account?</Link> </div>}
                         </div>
-                        <button className="login-signup-btn"type="submit" onClick={(e)=>handleLogin(e)}>Log in</button>
+                        <button className="login-signup-btn small-btn"type="submit" onClick={(e)=>handleLogin(e)}>Log in</button>
                     </div>
                 </form>
             </div> 

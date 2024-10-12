@@ -15,8 +15,14 @@
     .logo{
         width:30vw;
     }
+    .logout-btn{
+        width:100vw;
+        padding:5px
+    }
     .user-history{
-        right:20%;
+        right:-20%;
+        top:7px;
+        width:30vw;
     }
     .navigation-menu a{
         color:black;
@@ -185,6 +191,9 @@
     padding:.5rem;
     border:2px solid red;
     border-radius: 5rem;
+    position: absolute;
+    top:-1%;
+    font-size: 1rem ;
 }
 .nav-links li a{
     width:100%;
