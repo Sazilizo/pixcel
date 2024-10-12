@@ -36,7 +36,7 @@ const Header=()=>{
     }, [isLoggedIn, navigate]);
 
     const getDynamicHeight = () => {
-        if ((location.pathname === "/models/women" || location.pathname === "/models/men")) {
+        if ((location.pathname.includes("/models"))) {
           return '30vh';
         }
         return '90vh';
