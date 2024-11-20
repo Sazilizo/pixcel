@@ -5,19 +5,9 @@ import imageCompression from 'browser-image-compression';
 import { managementClient } from "../contentfulManagement";
 
 const UpdateProfile =()=>{
-    const {currentUser, submitted, models,setModels,setCurrentUser} = useContext(formContext);
+    const {currentUser,} = useContext(formContext);
     const [updatedDetails, setUpdatedDetails] = useState([]);
     const [isUpdated, setIsUpdated] = useState(false);
-    //this will set models currentUser with update values
-    const updateModel = async()=>{
-        const updatedModel = {...currentUser,...updatedDetails}
-        const updatedModels = models.map(model =>
-            model.id === currentUser.id ? updatedModel : model
-        )
-        setModels(updatedModels);
-        setCurrentUser(updatedModel)
-        localStorage.setItem('currentUser', JSON.stringify(updatedModel));
-    }
 
     const handleFormChange = async (e) => {
         const { name, value, files, type } = e.target;
@@ -75,13 +65,6 @@ const UpdateProfile =()=>{
         e.preventDefault();
         setIsUpdated(!isUpdated);
     }
-
-    useEffect(()=>{
-        updateModel();
-        console.log(updatedDetails);
-        console.log(models)
-        console.log(currentUser)
-    }, [isUpdated]);
     return (
         <div className="form-container">
           <h2>Update your profile</h2>

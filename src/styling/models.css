@@ -211,15 +211,19 @@
 .model-details--gallery{
     grid-column: 1/5;
     grid-row: 3;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(18rem,1fr));
+    width:90vw;
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem,1fr)); */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     place-items: center;
     gap:.5rem;
     margin-top: 2rem;
 }
 .gallery-item{
-    width: 18rem;
-    height:18rem;
+    width:auto;
+    height:20rem;
     border:1px solid black
 }
 .gallery-image{

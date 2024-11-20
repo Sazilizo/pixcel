@@ -154,7 +154,7 @@ const Apply = () => {
                     value: /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.[a-zA-Z]{2,})(\/[^\s]*)?$/,
                     message: "Invalid URL format"
                 }})}
-                placeholder="i.e https://facebook/facebooklink.com"></input>
+                placeholder="i.e https://facebook.com/username"></input>
                 {errors.facebook && <p style={{"color":"red"}}>{errors.facebook.message}</p>}
                 </div>
                 <div className="form-element">
@@ -165,7 +165,7 @@ const Apply = () => {
                     value: /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.[a-zA-Z]{2,})(\/[^\s]*)?$/,
                     message: "Invalid URL format"
                   }})}
-                  placeholder="i.e https://x/xlink.com"></input>
+                  placeholder="i.e https://x.com/username"></input>
                   {errors.twitter && <p style={{"color":"red"}}>{errors.twitter.message}</p>}
                 </div>
                 <div className="form-element">
@@ -176,7 +176,7 @@ const Apply = () => {
                     value: /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.[a-zA-Z]{2,})(\/[^\s]*)?$/,
                     message: "Invalid URL format"
                   }})}
-                  placeholder="i.e https://instagram/instagramlink.com"></input>
+                  placeholder="i.e https://instagram.com/username"></input>
                   {errors.instagram && <p style={{"color":"red"}}>{errors.instagram.message}</p>}
                 </div>
                 <div className="form-element">
@@ -187,7 +187,7 @@ const Apply = () => {
                     value: /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.[a-zA-Z]{2,})(\/[^\s]*)?$/,
                     message: "Invalid URL format"
                   }})}
-                  placeholder="i.e https://tiktok/tiktoklink.com"></input>
+                  placeholder="i.e https://tiktok.com/username"></input>
                   {errors.tiktok && <p style={{"color":"red"}}>{errors.tiktok.message}</p>}
                 </div>
                 <div className="form-element">
