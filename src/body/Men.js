@@ -9,7 +9,6 @@ const Men = () => {
     const location = useLocation();  // Check if this is causing the issue
     const [filteredByGender, setFilteredByGender] = useState([]);
     const [displayedModels, setDisplayedModels] = useState([]); 
-
     const handleFilterByGender = () => {
         const filtered = models.filter((model) => model.gender === "M");
         setFilteredByGender(filtered);

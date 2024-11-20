@@ -18,7 +18,7 @@ const Models =()=>{
     };
 
     useEffect(() => {
-        handleFilterByGender();
+        handleFilterByGender(); 
     }, [location.pathname]);
 
 

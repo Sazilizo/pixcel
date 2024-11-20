@@ -33,8 +33,13 @@ const Home = () => {
     }, [pageData])
 
     useEffect(()=>{
-        console.log(location.pathname)
-    },[])
+        console.log(location.pathname);
+        console.log("show me models:",models)
+    },[models])
+
+    useEffect(()=>{
+        console.log("displayd moels:",displayedModels);
+    })
     
   return (
     <>
@@ -58,7 +63,7 @@ const Home = () => {
                                     <h2 className="secondary-heading">Models</h2>
                                     <FilterByFirstLetter models={models} setFilteredModels={setDisplayedModels} />
                                     <div className="models-page--showcase">
-                                        <Model models={displayedModels} />
+                                        <Model models={displayedModels.length > 0? displayedModels : models} />
                                     </div>
                                 </div>
                             </>

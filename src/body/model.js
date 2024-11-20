@@ -12,7 +12,7 @@ const Model = ({models})=>{
         const filtered = models.filter((model) =>
         location.pathname.includes("women") ? model.gender === "F" : model.gender === "M"
         );
-        setFilteredByGender(filtered);
+        setFilteredByGender(filtered || models);
     };
 
     useEffect(() => {
