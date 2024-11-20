@@ -36,13 +36,13 @@ const Home = () => {
                                     <h2 className="secondary-heading">Models</h2>
                                     <FilterByFirstLetter models={models} setFilteredModels={setDisplayedModels} />
                                     <div className="models-page--showcase">
-                                        <Model models={displayedModels.length > 0? displayedModels : models} />
+                                        <Model models={displayedModels.length > 0? displayedModels : models.slice(0,4)} />
                                     </div>
                                 </div>
                             </>
                         ) : (
                             <div className="homepage-models--wrapper">
-                                <Model models={models} classname={"home-page-model-wrapper"} />
+                                <Model models={models.slice(0, 5)} classname={"home-page-model-wrapper"} />
                             </div>
                         )
                     )}

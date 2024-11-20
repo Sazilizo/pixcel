@@ -185,7 +185,7 @@ html{
 
 .border-div{
     max-width: 70vw;
-    min-height:50vh;
+    height:auto;
     padding:1vw 1vh;
     line-height: 1.8rem;
     margin:1rem auto;

@@ -23,7 +23,7 @@ const HeaderSlider = () => {
     useEffect(()=>{
         const interval = setInterval(()=>{
             setSliderIterator((prev)=> prev === slidersList.length -1? prev = 0 :prev + 1)
-        },1500);
+        },2000);
 
         return ()=> clearInterval(interval);
     },[])

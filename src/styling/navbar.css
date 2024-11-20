@@ -16,13 +16,15 @@
         width:30vw;
     }
     .logout-btn{
-        width:100vw;
-        padding:5px
+        width:auto;
+        padding:5px;
+        border:1px solid red
     }
     .user-history{
         right:-20%;
         top:7px;
         width:30vw;
+        border:1px solid red
     }
     .navigation-menu a{
         color:black;
