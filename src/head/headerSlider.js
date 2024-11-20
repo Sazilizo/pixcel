@@ -27,9 +27,6 @@ const HeaderSlider = () => {
 
         return ()=> clearInterval(interval);
     },[])
-    useEffect(()=>{
-        console.log(slidersList[0][1].image)
-    },[])
   return (
     <div className="header-slider-container">
         <div className="header-slider-wrapper">

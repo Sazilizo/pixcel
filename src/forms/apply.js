@@ -30,11 +30,9 @@ const Apply = () => {
       }));
     };
     const onSubmit = (data) => {
-      console.log(data);
       handleModelSubmit(data); 
     };
     useEffect(()=>{
-      console.log("images",images);
       setFile(images)
     },[images])
     return (

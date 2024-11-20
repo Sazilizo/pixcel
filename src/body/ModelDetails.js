@@ -9,8 +9,6 @@ const ModelDetails = () => {
 
     // finding the model with the id equalling usParams's
     const model = models.filter((model)=> model.id === id);
-    console.log(useParams());
-    console.log(models)
   return (
     <div className="model-details-page--wrapper">
         {

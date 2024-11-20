@@ -30,9 +30,9 @@ export const SearchByGender=()=>{
 
     useEffect(()=>{
         getAllByGender(getGender);
-        console.log(getGender);
+        // console.log(getGender);
     },[getGender]);
-    console.log(getGender)
+    // console.log(getGender)
     return(
         <>
                 <div className="filter-elements">
@@ -54,7 +54,7 @@ export const SearchByCountry =()=>{
         setCountry(e.target.value)
     }
 
-    console.log(country)
+    // console.log(country)
     return(
         <>
             <div className="filter-elements">
@@ -90,11 +90,11 @@ export const FilterByExperience =()=>{
 
 
 export const FilterByFirstLetter =({ models ,setFilteredModels })=>{
-    console.log(models)
+    // console.log(models)
     const {filterLetter} = useContext(filterContext);
     const findByFirstLetter = (letter) => {
         // Filter models based on the first letter
-        const filtered = models.filter((model) => model.name.toLowerCase().startsWith(letter));
+        const filtered = models.filter((model) => model.name.toLowerCase().startsWith(letter) || model.lastName.toLowerCase().startsWith(letter));
         setFilteredModels(filtered.length > 0 ? filtered : models);
         console.log(filtered)
     }

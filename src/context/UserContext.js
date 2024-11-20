@@ -82,11 +82,6 @@ const UsersContext = ({children})=>{
         })
         
     }
-
-    const handleFilterByGender=()=>{
-
-    }
-
     const handleLogin=()=>{
         if (!user.email || !user.password) {
             setLoggedMessage({ msg: "Email and password are required.", res: "error" });
@@ -95,7 +90,6 @@ const UsersContext = ({children})=>{
     
         const findUser = models.find((model)=>model.email === user.email && model.password === user.password)
         if (findUser){
-            console.log("correct credentials")
             setIsLoggedIn(true);
             setCurrentUser(findUser);
             setLoggedMessage({msg:`Successfully logged in as ${findUser.name}`, res:"success"})
@@ -122,7 +116,7 @@ const UsersContext = ({children})=>{
             file: file, // Raw file binary data
           });
         
-          // Step 2: Create an asset from the uploaded file
+          //Create an asset from the uploaded file
           const asset = await environment.createAsset({
             fields: {
               title: {
@@ -144,7 +138,6 @@ const UsersContext = ({children})=>{
             },
           });
         
-          // Step 3: Process and publish the asset
           const processedAsset = await asset.processForAllLocales();
           const publishedAsset = await processedAsset.publish();
           
@@ -152,7 +145,6 @@ const UsersContext = ({children})=>{
     };
   
     const handleModelSubmit = async (model) => {
-      console.log("file", file);
   
       const client = createClient({
           accessToken: "CFPAT-cSBIHujJ3IoArRwvU5qiv78208xR7miMB1NI3e_877k",
@@ -264,31 +256,17 @@ const UsersContext = ({children})=>{
   
       setSubmitted(true);
   };
-  
-    //     e.preventDefault();
-    //     await createEntry(model); 
-    //     setSubmitted(true);
-    //   };
     const handleLoginSubmit =(e)=>{
         e.preventDefault();
-        // setSubmitted(true);
+
     }
 
     useEffect(()=>{
-        // let newModels = []
-        // client.getEntries({content_type: 'models'})
-        // .then((res)=>{
-        //     // console.log(res.items[0].fields.models.models);
-        //     // newModels.push(res.items[0].fields.models.models);
-        //     // setModels( ...newModels);
-        // })
-        // .catch(console.error)
 
         client.getEntries({content_type: 'user'})
         .then((res)=>{
             const models = res.items
             const cleanedUp = models.map(model=>{
-                console.log(model.fields)
                 const {sys, fields} = model
                 const {id} = sys;
                 const {
@@ -302,71 +280,41 @@ const UsersContext = ({children})=>{
                 const gallery = fields.gallery.map(image=>{
                     return image.fields.file.url
                 })
-                console.log("location",location.city)
             
                 const profilePicture = fields.profilePicture.fields.file.url
 
                 return {id:id,name:name,lastName:lastName,gender:gender,email:email,height:height,weight:weight,age:age,motivation:motivation,password:password,ethnicity:ethnicity,portfolio:portfolio,socialMedias:socialMedias,gallery:gallery,profilePicture:profilePicture,location}
             })
-            console.log("cleaned", cleanedUp)
             setModels(cleanedUp);
         })
         .catch(console.error)
     },[submitted])
-
-    // useEffect(()=>{
-    //     client.getEntries({content_type: 'user'})
-    //     .then((res)=>{
-    //         console.log("tihs users?",res.items);
-    //         // newModels.push(res.items[0].fields.models.models);
-    //         // setModels( ...newModels);
-    //     })
-    // },[])
-
     useEffect(()=>{
         let pageData = []
         client.getEntries({content_type:"page"})
         .then(res=>{
-            console.log("users:",res.items[0].fields)
             pageData.push(res.items[0].fields)
             setPageData(...pageData)
         })
         .catch(console.error)
-        // console.log("models",models)
     },[])
 
     useEffect(()=>{
-        // if (submitted) {
-        //     const updatedModels = [...models, model];
-        //     setModels(updatedModels);
-        //     localStorage.setItem("models", JSON.stringify(updatedModels));
-        // }
-        console.log(models)
         if(models && submitted){
             handleLogin();
         }
     },[submitted]);
-
-    useEffect(()=>{
-        console.log("models",models.location);
-    },[models])
 
     useEffect(() => {
         const storedUser = localStorage.getItem('currentUser');
         if (storedUser) {
             setCurrentUser(JSON.parse(storedUser));
         }
-        // if (!isLoggedIn) navigate("/")
-        console.log(currentUser)
     }, [isLoggedIn]);
-    useEffect(() => {
-        console.log("Current Path:", window.location.pathname);
-    }, [window.location.pathname]);
 
     // useEffect(()=>{
     //     localStorage.clear();
     // },[])
-    console.log("from context:",models)
     return(
         <formContext.Provider value={{setFile,currentUser,handleApplyFormChange, handleModelSubmit,handleLogin,handleLoginChange,handleLogOut,handleLoginSubmit,loggedMessage,isLoggedIn, models,pageData,setCurrentUser,setModels,submitted,setIsLoggedIn,user}}>
             {children}

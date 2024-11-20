@@ -9,9 +9,6 @@ const NavBar = ({windowWidth,isLoggedIn}) => {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    useEffect(()=>{
-        console.log(windowWidth);
-    },[windowWidth])
   return (
     <nav className={windowWidth > 760 ? "navigation-menu" : "navigation-menu--small-screen black-bcg"}>
         <ul className={isMenuOpen || windowWidth > 760 ? "nav-links" : "nav-links hidden"}>

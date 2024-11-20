@@ -6,7 +6,6 @@ import { Link} from "react-router-dom";
 // instead of other profiles
 const ModelProfile =()=>{
     const {currentUser} = useContext(formContext);
-
     return(
     <div className="model-details-page--wrapper">
                     <div className="model-details--wrapper">

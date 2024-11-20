@@ -21,10 +21,6 @@ const Models =()=>{
         handleFilterByGender(); 
     }, [location.pathname]);
 
-
-    useEffect(()=>{
-        console.log("location",location.pathname)
-    },[])
     return(
         <div className="models-showcase">
             {id? <Outlet/>:

@@ -48,12 +48,6 @@ const FilterContext = ({children})=>{
         setFilteredModels(models);
         setFilterExp('');
     }
-    useEffect(() => {
-        const filteredResults = allFilters();
-        console.log("Filtered models:", filteredResults);
-        console.log(filterExp);
-        console.log(allFilters())
-    }, [searchName, searchGender, country, filterExp, sameFirstLetters]);
     
     // Individual Filter Functions
     
@@ -91,13 +85,6 @@ const FilterContext = ({children})=>{
         handleFilter(initialModels, letter, setFilteredModels, "name")
     }
     
-    
-    useEffect(()=>{
-        const namedModels =searchByName();
-        console.log("from search Bar", namedModels);
-        console.log(country)
-
-    },[]);
 
     return(
         <filterContext.Provider value={{findByFirstLetter,resetFilters,filteredModels,filterLetter, searchByName,getAllByCountry,getAllByExperience,getAllByGender}}>
@@ -107,38 +94,3 @@ const FilterContext = ({children})=>{
 };
 
 export default FilterContext;
-
-// const allFilters = ()=>{
-        
-    // }
-
-    // const searchByName = (name)=>{
-    //     const results = models.filter((model)=> model.name === name || model.lastName === name)
-    //     if (results.length === 0) return "Not found"
-    //     setSearchName(results);
-    // }
-    // console.log(searchName)
-    // const getAllByGender = (gender)=>{
-    //     const results = models.filter((model)=>model.gender === gender);
-    //     if (results.length === 0) return "Not found"
-    //     setSearchGender(results);
-    // }
-    // console.log(searchGender);
-    // const getAllByCountry = (country)=>{
-    //     const results = models.filter((model)=>model.country === country);
-    //     console.log(results)
-    //     if (results.length === 0) return "Not found"
-    //     setCountry(results)
-    // }
-
-    // const findByFirstLetter = (letter)=>{
-    //     const allStartingWith = models.filter((model)=> model.name.toLowerCase().startsWith(letter) || model.lastName.toLowerCase().startsWith(letter));
-    //     if (allStartingWith.length === 0) return "Not found"
-    //     console.log(allStartingWith)
-    //     setSameFirstLetter(allStartingWith);
-    // }
-    // const getAllByExperience = (exp)=>{
-    //     const results = models.filter((model)=> model.experience === exp);
-    //     if (results.length === 0) return "Not found"
-    //     setFilterExp(results)
-    // }

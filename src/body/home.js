@@ -14,33 +14,6 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [displayedModels, setDisplayedModels] = useState([]);
     const location = useLocation();
-
-    const handleFilterByGender = () => {
-        // const filtered = models.filter((model) => model.gender === "M");
-        // setFilteredByGender(filtered);
-        // setDisplayedModels(filtered);
-    };
-
-    useEffect(() => {
-        handleFilterByGender();
-    }, [location.pathname]);
-
-  
-    useEffect(()=>{
-        setIsLoading(false)
-        console.log("app:",pageData)
-        console.log(pageData && pageData.aboutContent.How)
-    }, [pageData])
-
-    useEffect(()=>{
-        console.log(location.pathname);
-        console.log("show me models:",models)
-    },[models])
-
-    useEffect(()=>{
-        console.log("displayd moels:",displayedModels);
-    })
-    
   return (
     <>
         <div className="home-container">

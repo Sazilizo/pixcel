@@ -18,10 +18,6 @@ const Model = ({models})=>{
     useEffect(() => {
         handleFilterByGender();
     }, [location.pathname]);
-
-    useEffect(()=>{
-        console.log(filteredByGender);
-    },[location.pathname])
     return(
         <>
         {models.length > 0? models.map(model=>{
